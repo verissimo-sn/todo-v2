@@ -4,6 +4,7 @@ export async function up(knex: Knex) {
   return knex.schema.createTable('tasks', table => {
     table.increments('id').primary();
     table.string('name').notNullable();
+    table.string('priority').notNullable();
     table.string('description', 100).notNullable();
   });
 }
