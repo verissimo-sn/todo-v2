@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
 
+import knex from '../database/connection';
+
 export default {
   //LIST ALL TASKS
-  index(req: Request, res: Response) {
-    return res.json({ message: 'Helo To-do v02' });
+  async index(req: Request, res: Response) {
+  
   },
 
   //LIST ONE TASK
