@@ -1,16 +1,16 @@
-import { Request, Response } from 'express';
+import { Request, response, Response } from 'express';
 
 import knex from '../database/connection';
 
 class TaskController {
-  //LIST ALL TASKS
+  //LIST ALL TASKS OK
   async index(req: Request, res: Response) {
     const tasks = await knex('tasks');
 
     return res.json(tasks);
   }
 
-  //LIST ONE TASK
+  //LIST ONE TASK OK
    async show(req: Request, res: Response) {
     const { id } = req.params;
 
@@ -30,7 +30,7 @@ class TaskController {
     return res.json({ task, priority });
   }
 
-  //CREATE A NEW TASK
+  //CREATE A NEW TASK OK
   async create(req: Request, res: Response) {
     const { 
       name,
@@ -65,10 +65,23 @@ class TaskController {
     });
   }
 
-  //DELETE A TASK
-  delete(req: Request, res: Response) {
+  //UPDATE A TASK
+  async update(req: Request, res: Response) {
 
   }
+
+  //DELETE A TASK OK
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const task = await knex('tasks')
+      .where('id', id)
+      .first()
+      .delete();
+
+    return res.json(task);
+  }
+
 }
 
 export default new TaskController;
