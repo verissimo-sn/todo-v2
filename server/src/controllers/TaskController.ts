@@ -5,12 +5,29 @@ import knex from '../database/connection';
 class TaskController {
   //LIST ALL TASKS
   async index(req: Request, res: Response) {
-  
+    const tasks = await knex('tasks');
+
+    return res.json(tasks);
   }
 
   //LIST ONE TASK
-  show(req: Request, res: Response) {
+   async show(req: Request, res: Response) {
+    const { id } = req.params;
 
+    const task =  await knex('tasks')
+      .where('id', id)
+      .first();
+
+    if(!task) {
+      return res.status(400).json({ message: "Task not found" });
+    }
+
+    const priority = await knex('priorities')
+      .join('task_priorities', 'priorities.id', '=', 'task_priorities.priority_id')
+      .where('task_priorities.task_id', id)
+      .select('priorities.name');
+
+    return res.json({ task, priority });
   }
 
   //CREATE A NEW TASK
@@ -39,6 +56,8 @@ class TaskController {
     }];
     
     await trx('task_priorities').insert(taskPriotity);
+
+    await trx.commit();
 
     return res.json({
       id: task_id,

@@ -7,6 +7,8 @@ import PriorityController from './controllers/PriorityController';
 
 routes.get('/priorities', PriorityController.index);
 
-routes.post('/task', TaskController.create);
+routes.get('/tasks', TaskController.index);
+routes.get('/tasks/:id', TaskController.show);
+routes.post('/tasks', TaskController.create);
 
 export default routes;
