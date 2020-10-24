@@ -5,7 +5,7 @@ import knex from '../database/connection';
 class TaskController {
   //LIST ALL TASKS OK
   async index(req: Request, res: Response) {
-    const tasks = await knex('tasks');
+    const tasks = await knex('tasks').select('*');
 
     return res.json(tasks);
   }
