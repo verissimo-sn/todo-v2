@@ -22,4 +22,11 @@ export const Content = styled.div`
   height: 100%;
 
   background: #fff;
+
+  h4 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #1A1B41;
+    margin-bottom: 70px;
+  }
 `;
