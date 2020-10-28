@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css';
+
+import TodoContainer from './components/TodoContainer';
+
+import './globalstyles.css';
 
 function App() {
   return (
-    <div className="app">
-      <h4>Start a Todo v2</h4>
+    <div className="todo-wrapper">
+      <TodoContainer />
     </div>
   );
 }
