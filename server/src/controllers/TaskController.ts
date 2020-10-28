@@ -18,7 +18,7 @@ class TaskController {
       .where('id', id)
       .first();
 
-    if(!task) {
+    if(task <= 0) {
       return res.status(400).json({ message: "Task not found" });
     }
 
@@ -67,6 +67,35 @@ class TaskController {
 
   //UPDATE A TASK
   async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const { name, description, priority } = req.body;
+
+    const trx = await knex.transaction();
+
+    const updatedTask = {
+      name,
+      description,
+      priority
+    };
+
+    const task = await trx('tasks')
+      .where('id', id)
+      .update(updatedTask);
+
+    if(task <=0) {
+      return res.status(401).json({ message: "Task not found" });
+    }
+
+    const taskPriotity = [{
+      task_id: id,
+      priority_id: priority,
+    }];
+
+    await trx('task_priorities').insert(taskPriotity);
+
+    await trx.commit();
+
+    return res.status(201).json({id, ...updatedTask});
 
   }
 
@@ -79,7 +108,11 @@ class TaskController {
       .first()
       .delete();
 
-    return res.json(task);
+    if(task <=0) {
+      return res.status(401).json({ error: "Task not found" });
+    }
+
+    return res.status(204).send();
   }
 
 }
