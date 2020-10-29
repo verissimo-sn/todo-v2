@@ -7,6 +7,7 @@ export const ItemContainer = styled.div`
 
   width: 100%;
   height: 60px;
+  margin-bottom: 21px;
 
   input {
     width: 100%;
@@ -14,8 +15,8 @@ export const ItemContainer = styled.div`
     height: 100%;
     padding: 20px;
     border-radius: 10px;
-    border: none;
-    outline-color: #C6B2B2;
+    border: 1px solid #C6B2B2;
+    outline: none;
 
     font-size: 20px;
     font-weight: bold;

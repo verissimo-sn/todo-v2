@@ -1,17 +1,19 @@
 import React from 'react';
 
-import { Container, Content } from './styles';
 import TodoItem from '../TodoItem';
+
+import { TaskContainer, Content } from './styles';
 
 const TodoContainer = () => {
   return (
-    <Container>
+    <TaskContainer>
       <Content>
         <h4>Todo App v2</h4>
         <TodoItem />
+        <TodoItem />
       </Content>
-    </Container>
-  )
+    </TaskContainer>
+  );
 }
 
 export default TodoContainer;
