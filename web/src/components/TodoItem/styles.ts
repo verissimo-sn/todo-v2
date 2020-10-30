@@ -9,21 +9,24 @@ export const ItemContainer = styled.div`
   height: 60px;
   margin-bottom: 21px;
 
-  input {
+  .task {
     width: 100%;
-    max-width: 460px;
+    max-width: 520px;
     height: 100%;
     padding: 20px;
     border-radius: 10px;
     border: 1px solid #C6B2B2;
-    outline: none;
+    cursor: pointer;
 
-    font-size: 20px;
-    font-weight: bold;
-    color: #C6B2B2;
+      h4 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #C6B2B2;
 
-    /* background-image: linear-gradient(to right, #FFF, #DD1818); */
+        /* background-image: linear-gradient(to right, #FFF, #DD1818); */
+      }
   }
+
 `;
 
 export const Button = styled.div`

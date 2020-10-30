@@ -23,10 +23,29 @@ export const Content = styled.div`
 
   background: #fff;
 
-  h4 {
+  .TodoContainer--title {
     font-size: 40px;
     font-weight: bold;
     color: #1A1B41;
     margin-bottom: 70px;
+  }
+
+  .TodoContainer--tasks,
+  .TodoContainer--completedTasks {
+    width: 100%;
+  }
+
+  .TodoContainer--completedTasks {
+    margin-bottom: 0 ;
+
+      .TodoContainer--completedTasks-title {
+        color: #6290C3;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0, 0,0 , 0.5);
+      }
   }
 `;

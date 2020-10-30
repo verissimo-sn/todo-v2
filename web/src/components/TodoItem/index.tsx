@@ -1,16 +1,14 @@
 import React from 'react';
-import { FaRegCheckCircle, FaEdit, FaTrash } from 'react-icons/fa'
+import { FaEdit, FaTrash } from 'react-icons/fa'
 
 import { ItemContainer, Button } from './styles';
 
 const TodoItem = ()  => {
   return(
     <ItemContainer>
-      <Button color='#F9FBBB' >
-        <FaRegCheckCircle size={40} color={'#C4C4C4'}/>
-      </Button>
-
-      <input type="text"/>
+      <div className="task">
+        <h4>My Task</h4>
+      </div>
 
       <Button color = '#9969D4'>
         <FaEdit size={40} color={'#C4C4C4'}/>
