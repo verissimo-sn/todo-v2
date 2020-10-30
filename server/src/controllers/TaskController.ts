@@ -7,7 +7,7 @@ class TaskController {
   async index(req: Request, res: Response) {
     const tasks = await knex('tasks').select('*');
 
-    return res.json(tasks);
+    return res.json({tasks});
   }
 
   //LIST ONE TASK OK
@@ -32,6 +32,8 @@ class TaskController {
 
   //CREATE A NEW TASK OK
   async create(req: Request, res: Response) {
+    const done = false;
+
     const { 
       name,
       description,
@@ -43,7 +45,8 @@ class TaskController {
     const task = {
       name,
       description,
-      priority
+      priority,
+      done
     }
 
     const id = await trx('tasks').insert(task);
@@ -82,21 +85,22 @@ class TaskController {
       .where('id', id)
       .update(updatedTask);
 
+    const updatedPriority = {
+      task_id: id,
+      priority_id: priority
+    }
+
+    await trx('task_priorities')
+      .where('task_id', id)
+      .update(updatedPriority)
+
     if(task <=0) {
       return res.status(401).json({ message: "Task not found" });
     }
 
-    const taskPriotity = [{
-      task_id: id,
-      priority_id: priority,
-    }];
-
-    await trx('task_priorities').insert(taskPriotity);
-
     await trx.commit();
 
     return res.status(201).json({id, ...updatedTask});
-
   }
 
   //DELETE A TASK OK

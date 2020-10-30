@@ -6,6 +6,7 @@ export async function up(knex: Knex) {
     table.string('name').notNullable();
     table.string('priority').notNullable();
     table.string('description', 100).notNullable();
+    table.boolean('done').notNullable();
   });
 }
 
