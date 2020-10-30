@@ -3,11 +3,15 @@ import { FaEdit, FaTrash } from 'react-icons/fa'
 
 import { ItemContainer, Button } from './styles';
 
-const TodoItem = ()  => {
+interface Task {
+  name: string;
+}
+
+const TodoItem: React.FC<Task> = ({ name })  => {
   return(
     <ItemContainer>
       <div className="ItemContainer--task">
-        <h4>My Task</h4>
+        <h4>{name}</h4>
       </div>
 
       <Button color='#9969D4'>
