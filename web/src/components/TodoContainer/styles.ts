@@ -21,8 +21,6 @@ export const Content = styled.div`
   align-items: center;
   height: 100%;
 
-  background: #fff;
-
   .TodoContainer--title {
     font-size: 40px;
     font-weight: bold;

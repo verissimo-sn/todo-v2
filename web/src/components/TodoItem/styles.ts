@@ -9,7 +9,7 @@ export const ItemContainer = styled.div`
   height: 60px;
   margin-bottom: 21px;
 
-  .task {
+  .ItemContainer--task {
     width: 100%;
     max-width: 520px;
     height: 100%;
