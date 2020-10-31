@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const NewItem: React.FC = () => {
+const InfoItem: React.FC = () => {
   return (
     <Container>
 
@@ -10,4 +10,4 @@ const NewItem: React.FC = () => {
   )
 }
 
-export default NewItem;
+export default InfoItem;

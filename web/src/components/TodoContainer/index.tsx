@@ -14,7 +14,7 @@ interface Task {
   // done: boolean;
 }
 
-const TodoContainer = () => {
+const TodoContainer: React.FC= () => {
   const [task, setTask] = useState<Task[]>([]);
 
   useEffect(()=>{
