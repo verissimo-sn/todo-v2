@@ -10,7 +10,7 @@ interface Task {
   id: number;
   name: string;
   // priority: number;
-  // description: string;
+  description: string;
   // done: boolean;
 }
 
@@ -32,7 +32,7 @@ const TodoContainer: React.FC= () => {
             <TodoItem
               key={task.id} 
               name={task.name} 
-              // description={task.description} 
+              description={task.description} 
               // priority={task.priority} 
               // done={task.done}
             />

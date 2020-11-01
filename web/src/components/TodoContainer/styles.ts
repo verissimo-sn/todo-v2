@@ -11,7 +11,8 @@ export const TaskContainer = styled.div`
   margin-top: 50px;
   padding: 60px 70px;
   border-radius: 30px;
-  background: #C2E7DA;
+  background-image: linear-gradient(to right, #FF512F, #DD2476);
+  /* background: #C2E7DA; */
 `;
 
 export const Content = styled.div`
@@ -31,19 +32,21 @@ export const Content = styled.div`
   .TodoContainer--tasks,
   .TodoContainer--completedTasks {
     width: 100%;
+    max-height: 350px;
+    height: 100%;
   }
 
   .TodoContainer--completedTasks {
     margin-bottom: 0 ;
 
-      .TodoContainer--completedTasks-title {
-        color: #6290C3;
-        font-size: 30px;
-        text-align: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(0, 0,0 , 0.5);
-      }
+    .TodoContainer--completedTasks-title {
+      color: #1A1B41;
+      font-size: 30px;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255 , 0.5);
+    }
   }
 `;
