@@ -1,26 +1,34 @@
 import React, { useState, MouseEvent } from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa'
+import { FaEdit, FaTrash } from 'react-icons/fa';
+
+import api from '../../server/api';
 
 import { ItemContainer, Button, InfoContainer } from './styles';
 
 interface Task {
   name: string;
   description: string;
+  id: number;
 }
 
-const TodoItem: React.FC<Task> = ({ name, description })  => {
-  const [showInfo, setShowInfo] = useState<string>();
+const TodoItem: React.FC<Task> = ({ name, description, id })  => {
+  const [showInfo, setShowInfo] = useState<string>('none');
 
   function handleClick(e: MouseEvent) {
-    if(e.type === 'click'){
+    if(e.type === 'click') {
       if(showInfo === 'flex') {
         return setShowInfo('none');
       }
   
       return setShowInfo('flex');
+    }    
+  }
+
+  function handleDeleteTask(e: MouseEvent) {
+    if(e.type === 'click') {
+      api.delete(`tasks/${id}`);
+      alert(`Task ${id} successfully deleted`);
     }
-    console.log(setShowInfo);
-    
   }
   return(
     <>
@@ -33,7 +41,7 @@ const TodoItem: React.FC<Task> = ({ name, description })  => {
           <FaEdit size={40} color={'#C4C4C4'}/>
         </Button>
 
-        <Button color='#F32F2F'>
+        <Button color='#F32F2F' onClick={handleDeleteTask}>
           <FaTrash size={40} color={'#C4C4C4'}/>
         </Button>
         <InfoContainer itemProp={showInfo}>

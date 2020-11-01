@@ -21,7 +21,7 @@ const TodoContainer: React.FC= () => {
     api.get('tasks').then(response => {
       setTask(response.data.tasks);
     })
-  }, []);
+  }, [task]);
 
   return (
     <TaskContainer>
@@ -31,6 +31,7 @@ const TodoContainer: React.FC= () => {
           {task.map(task => (
             <TodoItem
               key={task.id} 
+              id={task.id}
               name={task.name} 
               description={task.description} 
               // priority={task.priority} 
