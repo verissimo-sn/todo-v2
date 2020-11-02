@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, MouseEvent } from 'react';
+import { FiPlus } from 'react-icons/fi';
 
 import api from '../../server/api';
 
 import TodoItem from '../TodoItem';
+import NewTask from '../NewTask';
 
 import { TaskContainer, Content } from './styles';
 
@@ -16,12 +18,19 @@ interface Task {
 
 const TodoContainer: React.FC= () => {
   const [task, setTask] = useState<Task[]>([]);
+  const [showForm, setShowForm] = useState<boolean>(true);
 
   useEffect(()=>{
     api.get('tasks').then(response => {
       setTask(response.data.tasks);
     })
   }, [task]);
+
+  function hamdleShowForm(e: MouseEvent) {
+    if(e.type === 'click') {
+      // return setShowForm(!showForm);
+    }
+  }
 
   return (
     <TaskContainer>
@@ -38,6 +47,14 @@ const TodoContainer: React.FC= () => {
               // done={task.done}
             />
           ))}
+
+          {showForm &&  
+            <NewTask /> 
+          }
+
+          <button className="TodoContainer--add-button" onClick={hamdleShowForm}>
+            <FiPlus size={40} color={'#fff'}/>
+          </button>
         </div>
         <div className="TodoContainer--completedTasks">
           <h4 className="TodoContainer--completedTasks-title">Completed Tasks</h4>

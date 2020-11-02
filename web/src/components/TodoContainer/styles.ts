@@ -9,7 +9,7 @@ export const TaskContainer = styled.div`
   max-width: 800px;
   height: 900px;
   margin-top: 50px;
-  padding: 60px 70px;
+  padding: 60px 30px;
   border-radius: 30px;
   background-image: linear-gradient(to right, #FF512F, #DD2476);
   /* background: #C2E7DA; */
@@ -34,6 +34,8 @@ export const Content = styled.div`
     width: 100%;
     max-height: 350px;
     height: 100%;
+    position: relative;
+
   }
 
   .TodoContainer--completedTasks {
@@ -48,5 +50,19 @@ export const Content = styled.div`
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255 , 0.5);
     }
+  }
+
+  .TodoContainer--add-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #BAFF29;
+    outline: none;
+    cursor: pointer;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 `;
