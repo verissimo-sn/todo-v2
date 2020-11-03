@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 460px;
   height: 450px;
   padding: 30px 20px;
 
@@ -21,6 +21,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: stretch;
   width: 100%;
+  position: relative;
 
   .NewTask--title {
     font-size: 30px;
@@ -40,6 +41,7 @@ export const Content = styled.div`
   .NewTask--input input[type="text"] {
     width: 100%;
     height: 40px;
+    margin-top: 6px;
     border-radius: 10px;
     padding-left: 20px;
     outline: none;
@@ -49,9 +51,56 @@ export const Content = styled.div`
   .NewTask--input textarea {
     width: 100%;
     height: 120px;
+    margin-top: 6px;
     border-radius: 10px;
     padding-left: 20px;
     outline: none;
     border: none;
+  }
+
+  .NewTask--input select,
+  .NewTask--input option {
+    width: 100%;
+    max-width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin: 0 auto;
+  }
+
+  .NewTask--button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+
+  .NewTask--button button {
+    width: 100%;
+    max-width: 120px;
+    padding: 3px;
+    border: none;
+    outline: none;
+    color: #000;
+    cursor: pointer;
+  }
+
+  .NewTask--button button:first-child {
+    background: #E77F7F;
+  }
+  .NewTask--button button:last-child {
+    background: #BAFF29;
+  }
+
+  .NewTask--btn-fechar {
+    position: absolute;
+    top: -15px;
+    right: 0;
+  }
+
+  .NewTask--btn-fechar button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
   }
 `;

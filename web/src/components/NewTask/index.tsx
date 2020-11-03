@@ -37,13 +37,20 @@ const NewTask: React.FC = () => {
               //onChange={handleSelectedPriority}
             >
               <option value="0">Prioridade</option>
-              <option value="1">Normal</option>
+              <option value="1">1 - Normal</option>
+              <option value="2">2 - Normal</option>
+              <option value="3">3 - Normal</option>
+              <option value="4">4 - Normal</option>
             </select>
           </div>
 
           <div className="NewTask--button">
             <button>Cancelar</button>
             <button type="submit">Criar</button>
+          </div>
+
+          <div className="NewTask--btn-fechar">
+            <button>X</button>
           </div>
         </form>
       </Content>
