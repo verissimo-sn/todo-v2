@@ -90,17 +90,4 @@ export const Content = styled.div`
   .NewTask--button button:last-child {
     background: #BAFF29;
   }
-
-  .NewTask--btn-fechar {
-    position: absolute;
-    top: -15px;
-    right: 0;
-  }
-
-  .NewTask--btn-fechar button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
 `;
