@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent, MouseEvent } from 'react';
 
 import api from '../../server/api';
 
@@ -23,22 +23,12 @@ const NewTask: React.FC = () => {
     });
   },[]);
 
-  function handleInputTitle(e: ChangeEvent<HTMLInputElement>) {
-    const title = e.target.value;
-
-    setTitle(title);
-  }
-
-  function handleTextareaDescription(e: ChangeEvent<HTMLTextAreaElement>) {
-    const description = e.target.value;
-
-    setDescription(description);
-  }
-
-  function handleSelectedPriority(e: ChangeEvent<HTMLSelectElement>) {
-    const selectedPriority = e.target.value;
-
-    setSelectedPriority(selectedPriority);
+  function handleCloseForm(e: MouseEvent) {
+    if(e.type === 'click') {
+      setDescription('');
+      setTitle('');
+      setSelectedPriority('');
+    }
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -46,16 +36,19 @@ const NewTask: React.FC = () => {
 
     const formData = new FormData();
 
-    const appendName = formData.append('name', title);
-    const appendDescription = formData.append('description', description);
-    const appendPriority = formData.append('priority', String(selectedPriority));
+    formData.append('name', title);
+    formData.append('description', description);
+    formData.append('priority', selectedPriority);
 
-    console.log(appendName, appendDescription, appendPriority);
     console.log(title, description, selectedPriority);
 
-    // await api.post('tasks', data);
+    // await api.post('tasks', formData);
 
     // alert("Task criada com sucesso");
+
+    setDescription('');
+    setTitle('');
+    setSelectedPriority('');
   }
 
   return (
@@ -69,9 +62,8 @@ const NewTask: React.FC = () => {
             <input
               type="text"
               id="title"
-              name="title"
               value={title}
-              onChange={handleInputTitle}
+              onChange={e => setTitle(e.target.value)}
             />
           </div>
 
@@ -81,17 +73,16 @@ const NewTask: React.FC = () => {
               id="description" 
               value={description}
               maxLength={100}
-              onChange={handleTextareaDescription}
+              onChange={e => setDescription(e.target.value)}
             />
           </div>
 
           <div className="NewTask--input">
             <label htmlFor="priority"></label>
             <select 
-              name="priority" 
               id="priority"
               value={selectedPriority}
-              onChange={handleSelectedPriority}
+              onChange={e => setSelectedPriority(e.target.value)}
             >
               <option value="0">Priority</option>
                 {priorities.map(priority => (
@@ -101,7 +92,7 @@ const NewTask: React.FC = () => {
           </div>
 
           <div className="NewTask--button">
-            <button>Cancelar</button>
+            <button onClick={handleCloseForm}>Cancelar</button>
             <button type="submit">Criar</button>
           </div>
         </form>
