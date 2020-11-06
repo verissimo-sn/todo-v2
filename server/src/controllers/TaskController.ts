@@ -1,4 +1,4 @@
-import { Request, response, Response } from 'express';
+import { Request, Response } from 'express';
 
 import knex from '../database/connection';
 
@@ -101,6 +101,25 @@ class TaskController {
     await trx.commit();
 
     return res.status(201).json({id, ...updatedTask});
+  }
+
+  async patch(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const trx = await knex.transaction();
+
+    const newSatus = {
+      done: status
+    };
+
+    const updatedStatus = await trx('tasks')
+      .where('id', id)
+      .update(newSatus);
+
+    await trx.commit();
+
+    return res.status(201).json({ id, updatedStatus })
   }
 
   //DELETE A TASK OK
