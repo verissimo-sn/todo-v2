@@ -104,8 +104,8 @@ class TaskController {
   }
 
   async patch(req: Request, res: Response) {
-    const { id } = req.params;
-    const { status } = req.body;
+    const { id, status } = req.params;
+    // const { status } = req.body;
 
     const trx = await knex.transaction();
 
@@ -113,13 +113,13 @@ class TaskController {
       done: status
     };
 
-    const updatedStatus = await trx('tasks')
+    await trx('tasks')
       .where('id', id)
       .update(newSatus);
 
     await trx.commit();
 
-    return res.status(201).json({ id, updatedStatus })
+    return res.status(201).send();
   }
 
   //DELETE A TASK OK
