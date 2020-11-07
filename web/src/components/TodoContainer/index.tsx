@@ -13,12 +13,12 @@ interface Task {
   name: string;
   // priority: number;
   description: string;
-  // done: boolean;
+  done: boolean;
 }
 
 const TodoContainer: React.FC= () => {
   const [task, setTask] = useState<Task[]>([]);
-  const [showForm, setShowForm] = useState<boolean>(true);
+  const [showForm, setShowForm] = useState<boolean>(false);
 
   useEffect(()=>{
     api.get('tasks').then(response => {
@@ -28,7 +28,7 @@ const TodoContainer: React.FC= () => {
 
   function hamdleShowForm(e: MouseEvent) {
     if(e.type === 'click') {
-      // return setShowForm(!showForm);
+      return setShowForm(!showForm);
     }
   }
 
@@ -37,16 +37,20 @@ const TodoContainer: React.FC= () => {
       <Content>
         <h4 className="TodoContainer--title">Todo App v2</h4>
         <div className="TodoContainer--tasks">
-          {task.map(task => (
-            <TodoItem
-              key={task.id} 
-              id={task.id}
-              name={task.name} 
-              description={task.description} 
-              // priority={task.priority} 
-              // done={task.done}
-            />
-          ))}
+          {task.map(task => {
+            if(task.done) {
+              return (
+                <TodoItem
+                key={task.id} 
+                id={task.id}
+                name={task.name} 
+                description={task.description} 
+                // priority={task.priority} 
+                status={task.done}
+                />
+              ); 
+            };
+          })}
 
           {showForm &&  
             <NewTask /> 
@@ -58,6 +62,20 @@ const TodoContainer: React.FC= () => {
         </div>
         <div className="TodoContainer--completedTasks">
           <h4 className="TodoContainer--completedTasks-title">Completed Tasks</h4>
+          {task.map(task => {
+            if(!task.done) {
+              return (
+                <TodoItem
+                key={task.id} 
+                id={task.id}
+                name={task.name} 
+                description={task.description} 
+                // priority={task.priority} 
+                status={task.done}
+                />
+              ); 
+            };
+          })}
         </div>
       </Content>
     </TaskContainer>

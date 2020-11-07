@@ -9,10 +9,12 @@ interface Task {
   name: string;
   description: string;
   id: number;
+  status: boolean;
 }
 
-const TodoItem: React.FC<Task> = ({ name, description, id })  => {
+const TodoItem: React.FC<Task> = ({ name, description, id, status })  => {
   const [showInfo, setShowInfo] = useState<string>('none');
+  // const [done, setDone] = useState<boolean>();
 
   function handleClick(e: MouseEvent) {
     if(e.type === 'click') {
@@ -22,6 +24,12 @@ const TodoItem: React.FC<Task> = ({ name, description, id })  => {
   
       return setShowInfo('flex');
     }    
+  }
+
+  function handleUpdateStatus() {
+    const newStatus = Number(!status);
+
+    api.patch(`tasks/${id}/${newStatus}`);
   }
 
   function handleDeleteTask(e: MouseEvent) {
@@ -46,7 +54,7 @@ const TodoItem: React.FC<Task> = ({ name, description, id })  => {
         </Button>
         <InfoContainer itemProp={showInfo}>
           <h4>{description}</h4>
-          <button>Done</button>
+          <button onClick={handleUpdateStatus}>Done</button>
         </InfoContainer>
       </ItemContainer>
     </>
